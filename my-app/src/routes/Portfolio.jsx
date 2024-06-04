@@ -3,7 +3,7 @@ import "./Portfolio.css";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaArrowLeft } from "react-icons/fa";
-import TabBar from "./TabBar";
+import TabBar from "./components/TabBar";
 import axios from "axios";
 
 function Portfolio() {
