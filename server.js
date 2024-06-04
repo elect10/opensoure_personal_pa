@@ -96,3 +96,37 @@ app.post("/api/signin", async (req, res) => {
       });
     }
   });
+
+
+/* Main page search */
+app.post("/api/search", auth, async (req, res) => {
+    const { status, position, stack } = req.body;
+  
+    let positionStr;
+    switch (position) {
+      case "Front-end":
+        positionStr = "front_req";
+        break;
+      case "Back-end":
+        positionStr = "back_req";
+        break;
+      case "Designer":
+        positionStr = "design_req";
+        break;
+      default:
+        return res.status(400).json({ message: "position error" });
+    }
+  
+    await db.query("UPDATE posts SET isEnd = true WHERE enddate < NOW()::Date");
+  
+    const query = {
+      text:
+        "SELECT * FROM posts WHERE " +
+        positionStr +
+        " > 0 AND (stack | $1) > 0 AND isEnd = $2",
+      values: [stack, status],
+    };
+    const result = await db.query(query);
+  
+    return res.status(200).json(result.rows);
+  });
