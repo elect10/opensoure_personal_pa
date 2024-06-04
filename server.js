@@ -328,3 +328,36 @@ app.post("/api/posting", auth, async (req, res) => {
     }
   });
   
+
+  app.post("/api/profile", auth, async (req, res) => {
+    const id = req.body.id;
+  
+    const query = {
+      text: "SELECT perform, commute, prepare, commitment, total, username, department FROM users WHERE id = $1",
+      values: [id],
+    };
+  
+    try {
+      const query_result = await db.query(query);
+      const scores = query_result.rows[0];
+      const score =
+        scores.perform + scores.commute + scores.prepare + scores.commitment;
+      // const evaluate = parseFloat((score / (scores.total * 4)).toFixed(1));
+      // console.log(Math.round((score / (scores.total * 4)).toFixed(1)));
+      if (scores.total == 0) {
+        evaluate = 50;
+      } else evaluate = Math.round((score / (scores.total * 4)).toFixed(1)) * 20;
+  
+      // console.log(evaluate);
+  
+      res.status(200).json({
+        username: scores.username,
+        id: id,
+        department: scores.department,
+        evaluate_average: evaluate,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: "profile failed" });
+    }
+  });
