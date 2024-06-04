@@ -503,4 +503,20 @@ app.post("/api/mypost", auth, async (req, res) => {
       console.error(error);
       res.status(400).json({ message: "applicant failed" });
     }
-  });
+    
+    app.post("/api/apply_portfolio", auth, async (req, res) => {
+        const { id, userid } = req.body;
+      
+        const query = `SELECT * FROM users WHERE id='${userid}'`;
+      
+        try {
+          const query_result = await db.query(query);
+          // console.log(query_result.rows);
+      
+          res.status(200).json(query_result.rows[0]);
+        } catch (error) {
+          console.error(error);
+          res.status(400).json({ message: "apply_portfolio failed" });
+        }
+      });
+      
