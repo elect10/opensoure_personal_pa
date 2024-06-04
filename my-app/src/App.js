@@ -21,7 +21,7 @@ import PostsList from "./routes/PostsList";
 import Portfolio from "./routes/Portfolio";
 
 //application handle
-import ApplicationList from "./routes/ApplicatonList";
+import ApplicationList from "./routes/ApplicationList";
 import AccountInformation from "./routes/AccountInformation";
 import ApplicationPort from "./routes/ApplicationPort";
 

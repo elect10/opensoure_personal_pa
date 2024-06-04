@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TabBar from "./TabBar";
+import TabBar from "./components/TabBar";
 import styled from "styled-components";
 import { FaArrowLeft } from "react-icons/fa6";
 import arrowLeftIcon from "./asset/image/arrow-left-icon.svg";

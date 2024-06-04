@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import TabBar from "./TabBar";
+import TabBar from "./components/TabBar";
 import { FaArrowLeft } from "react-icons/fa";
 import ApplicationEvalBar from "./components/ApplicationEvalBar";
 
