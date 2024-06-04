@@ -23,6 +23,8 @@ import ApplicationList from "./routes/ApplicatonList";
 import AccountInformation from "./routes/AccountInformation";
 import ApplicationPort from "./routes/ApplicationPort";
 import ProjectDescription from "./routes/ProjectDescription";
+import TeamEvaluation from "./routes/TeamEvaluation";
+import TeamMemberEvaluation from "./routes/TeamMemberEvaluation";
 
 //scrab page
 import Scrab from "./routes/Scrab";
@@ -46,6 +48,8 @@ function App() {
         <Route path="/accountInformation" element={<AccountInformation />} />
         <Route path="/applicationPort" element={<ApplicationPort />} />
         <Route path="/project-description" element={<ProjectDescription projectId ={projectId}/>} />
+        <Route path="/evaluation" element={<TeamEvaluation />} />
+        <Route path="/evaluation/:memberId" element={ <TeamMemberEvaluation />} />
         
 
       </Routes>
