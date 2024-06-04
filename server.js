@@ -291,3 +291,40 @@ app.post("/api/posting", auth, async (req, res) => {
       return res.status(400).json({ message: "posting failed" });
     }
   });
+
+  app.post("/api/scrab_post", auth, async (req, res) => {
+    //   console.log(req.cookies);
+    //   console.log(req.body);
+    const id = req.body.id;
+  
+    const query = {
+      text: "SELECT * FROM apply_post WHERE userid = $1",
+      values: [id],
+    };
+  
+    try {
+      const result = await db.query(query);
+  
+      let postsId = [];
+      result.rows.map((post) => {
+        postsId.push(post.postid);
+      });
+  
+      if (postsId.length == 0) {
+        res.status(200).json({ message: "NO post..." });
+      } else {
+        const ids = postsId.map(String).join(", ");
+        const query2 = {
+          text: `SELECT * FROM posts WHERE id IN (${ids})`,
+        };
+  
+        const posts_result = await db.query(query2);
+  
+        res.status(200).json(posts_result.rows);
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: "scrab_post failed" });
+    }
+  });
+  
