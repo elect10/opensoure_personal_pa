@@ -8,18 +8,20 @@ import {
   Navigate,
   useLocation,
 } from "react-router-dom";
-
+//login to main page - posting
 import Loginpic from "./routes/Loginpic";
 import Login from "./routes/Login";
 import Main from "./routes/Main";
 import Makepost from "./routes/Makepost";
 import SignUp from "./routes/SignUp";
 
-import Scrab from "./routes/Scrab";
+// profile page
 import ProfilePage from "./routes/ProfilePage";
 import PostsList from "./routes/PostsList";
+import Portfolio from "./routes/Portfolio";
 
-
+//scrab page
+import Scrab from "./routes/Scrab";
 
 
 function App() {
@@ -32,7 +34,9 @@ function App() {
         <Route path="/makepost" element={<Makepost />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/scrab" element={<Scrab />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile" element={<ProfilePage />} /> 
+        <Route path="/posts" element={<PostsList />} />
+        <Route path="/portfolio" element={<Portfolio />} />
 
       </Routes>
     </Router>
