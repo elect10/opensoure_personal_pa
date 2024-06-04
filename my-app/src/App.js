@@ -14,8 +14,12 @@ import Login from "./routes/Login";
 import Main from "./routes/Main";
 import Makepost from "./routes/Makepost";
 import SignUp from "./routes/SignUp";
+
 import Scrab from "./routes/Scrab";
 import ProfilePage from "./routes/ProfilePage";
+import PostsList from "./routes/PostsList";
+
+
 
 
 function App() {
