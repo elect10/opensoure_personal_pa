@@ -14,6 +14,9 @@ import Login from "./routes/Login";
 import Main from "./routes/Main";
 import Makepost from "./routes/Makepost";
 import SignUp from "./routes/SignUp";
+import Scrab from "./routes/Scrab";
+import ProfilePage from "./routes/ProfilePage";
+
 
 function App() {
   return (
@@ -24,6 +27,9 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/makepost" element={<Makepost />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/scrab" element={<Scrab />} />
+        <Route path="/profile" element={<ProfilePage />} />
+
       </Routes>
     </Router>
   );
