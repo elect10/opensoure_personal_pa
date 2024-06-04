@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import PostsList from "./PostsList";
 import ProfileCard from "./ProfileCard.jsx";
-import EvaluationBar from "./EvaluationBar.jsx";
+import EvaluationBar from "./components/EvaluationBar.jsx";
 import styled from "styled-components";
 import TabBar from "./components/TabBar.jsx";
 import {
