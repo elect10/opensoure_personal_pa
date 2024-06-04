@@ -42,6 +42,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/applicationList" element={<ApplicationList />} />
         <Route path="/accountInformation" element={<AccountInformation />} />
+        <Route path="/applicationPort" element={<ApplicationPort />} />
         
 
       </Routes>
