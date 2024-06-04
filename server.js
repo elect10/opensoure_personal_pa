@@ -61,3 +61,38 @@ app.post("/api/signup", async (req, res, next) => {
   
     return res.status(200).json({ message: "Success create new account" });
   });
+
+
+/* SignIn */
+app.post("/api/signin", async (req, res) => {
+    const { id, password } = req.body;
+  
+    const query = {
+      text: "SELECT * FROM users WHERE id = $1 AND password = $2",
+      values: [id, password],
+    };
+    const result = await db.query(query);
+  
+    if (result.rows.length == 0) {
+      return res.status(400).json({ message: "Signin failed." });
+    } else {
+      const payload = {
+        id,
+      };
+      jwt.sign(payload, process.env.KEY, { expiresIn: 3600 }, (err, token) => {
+        if (err) {
+          return res.status(400).json({ message: "token create failed." });
+        } else {
+          res.cookie("user", token, {
+            maxAge: 30 * 60 * 1000,
+            httpOnly: false,
+            sameSite: "None",
+            secure: true,
+          });
+          return res
+            .status(200)
+            .json({ token: token, message: "signin success" });
+        }
+      });
+    }
+  });
