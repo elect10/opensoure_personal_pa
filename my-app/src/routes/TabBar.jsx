@@ -11,7 +11,6 @@ import {
 export default function TabBar() {
   const navigate = useNavigate();
 
-  // 여기 바꿔야 함
   const goToHome = () => {
     navigate("/main");
   };
