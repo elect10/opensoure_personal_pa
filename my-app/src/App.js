@@ -21,6 +21,7 @@ import PostsList from "./routes/PostsList";
 import Portfolio from "./routes/Portfolio";
 import ApplicationList from "./routes/ApplicatonList";
 import AccountInformation from "./routes/AccountInformation";
+import ApplicationPort from "./routes/ApplicationPort";
 
 //scrab page
 import Scrab from "./routes/Scrab";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/applicationList" element={<ApplicationList />} />
         <Route path="/accountInformation" element={<AccountInformation />} />
+        
 
       </Routes>
     </Router>
