@@ -503,20 +503,56 @@ app.post("/api/mypost", auth, async (req, res) => {
       console.error(error);
       res.status(400).json({ message: "applicant failed" });
     }
-    
-    app.post("/api/apply_portfolio", auth, async (req, res) => {
-        const { id, userid } = req.body;
-      
-        const query = `SELECT * FROM users WHERE id='${userid}'`;
-      
-        try {
-          const query_result = await db.query(query);
-          // console.log(query_result.rows);
-      
-          res.status(200).json(query_result.rows[0]);
-        } catch (error) {
-          console.error(error);
-          res.status(400).json({ message: "apply_portfolio failed" });
-        }
-      });
-      
+  });
+  
+  app.post("/api/apply_portfolio", auth, async (req, res) => {
+    const { id, userid } = req.body;
+  
+    const query = `SELECT * FROM users WHERE id='${userid}'`;
+  
+    try {
+      const query_result = await db.query(query);
+      // console.log(query_result.rows);
+  
+      res.status(200).json(query_result.rows[0]);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: "apply_portfolio failed" });
+    }
+  });
+  
+app.post("/api/postend", auth, async (req, res) => {
+    const { id, postid } = req.body;
+  
+    const query = {
+      text: "UPDATE posts SET isEnd = true WHERE id = $1",
+      values: [postid],
+    };
+    try {
+      await db.query(query);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ message: "post end failed." });
+    }
+  
+    return res.status(200).json({ message: "post end success." });
+  });
+  
+  app.post("/api/postdelete", auth, async (req, res) => {
+    const { id, postid } = req.body;
+  
+    console.log(req.body);
+  
+    const query = {
+      text: "DELETE FROM posts WHERE id = $1",
+      values: [postid],
+    };
+  
+    try {
+      await db.query(query);
+    } catch (err) {
+      return res.status(400).json({ message: "post delete failed." });
+    }
+    return res.status(200).json({ message: "post delete success" });
+  });
+  
