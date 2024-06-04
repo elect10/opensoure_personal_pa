@@ -10,7 +10,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import TechStackPopup from './components/TechStackPopup';
 import TechStackPopup1 from './components/TechStackPopup1';
 import TechStackPopup2 from './components/TechStackPopup2';
-import useProjectStore from './store/useProjectStore';
+import useProjectStore from '../store/useProjectStore';
 
 const Header = styled.div`
   display: flex;
