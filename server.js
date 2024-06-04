@@ -468,3 +468,39 @@ app.post("/api/mypost", auth, async (req, res) => {
       res.status(400).json({ message: "mypost failed" });
     }
   });
+
+  app.post("/api/applicant", auth, async (req, res) => {
+    const { id, postid } = req.body;
+  
+    // const query = `SELECT * FROM apply_post WHERE postid=${postid}`;
+  
+    // try {
+    //   const query_result = await db.query(query);
+    //   const usersString = query_result.rows
+    //     .map((item) => {
+    //       return `'${item.userid}'`;
+    //     })
+    //     .join(", ");
+    //   const usersQuery = `SELECT * FROM users WHERE id IN (${usersString})`;
+  
+    //   const usersQuery_result = await db.query(usersQuery);
+    //   const users = usersQuery_result.rows;
+  
+    //   res.status(200).json(users);
+    // } catch (error) {
+    //   console.error(error);
+    //   res.status(400).json({ message: "applicant failed" });
+    // }
+  
+    const query = `SELECT users.username, users.id, users.phone, users.department, applicant.position, applicant.postid FROM users JOIN applicant ON applicant.userid = users.id WHERE applicant.postid = ${postid}`;
+  
+    try {
+      const query_result = await db.query(query);
+  
+      const users = query_result.rows;
+      res.status(200).json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: "applicant failed" });
+    }
+  });
