@@ -361,3 +361,24 @@ app.post("/api/posting", auth, async (req, res) => {
       res.status(400).json({ message: "profile failed" });
     }
   });
+
+  app.post("/api/account", auth, async (req, res) => {
+    const id = req.body.id;
+  
+    const query = {
+      text: "SELECT * FROM users WHERE id = $1",
+      values: [id],
+    };
+  
+    try {
+      const query_result = await db.query(query);
+      const user = query_result.rows;
+  
+      // console.log(user);
+  
+      res.status(200).json(user[0]);
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: "account failed" });
+    }
+  });
