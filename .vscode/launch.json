@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/minji/Desktop/software/오소실/opensource_personal_pa/my-app/src/routes",
+      "program": "/Users/minji/Desktop/software/오소실/opensource_personal_pa/my-app/src/routes/build/Debug/outDebug"
+    }
+  ]
+}
