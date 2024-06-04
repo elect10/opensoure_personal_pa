@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useProjectStore from '.../store/useProjectStore';
+import useProjectStore from '../../store/useProjectStore';
 
 const RadioButtonLabel = styled.label`
   display: block;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import useProjectStore from '.../store/useProjectStore';
+import useProjectStore from '../../store/useProjectStore';
 
 const Container = styled.div`
   text-align: left;

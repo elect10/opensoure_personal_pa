@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import useProjectStore from '.../store/useProjectStore.jsx';
+import useProjectStore from '../../store/useProjectStore.jsx';
 
 const Container = styled.div`
   display: flex;
