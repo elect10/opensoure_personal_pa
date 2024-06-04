@@ -22,12 +22,14 @@ import Portfolio from "./routes/Portfolio";
 import ApplicationList from "./routes/ApplicatonList";
 import AccountInformation from "./routes/AccountInformation";
 import ApplicationPort from "./routes/ApplicationPort";
+import ProjectDescription from "./routes/ProjectDescription";
 
 //scrab page
 import Scrab from "./routes/Scrab";
 
 
 function App() {
+  const projectId = "1";
   return (
     <Router>
       <Routes>
@@ -43,6 +45,7 @@ function App() {
         <Route path="/applicationList" element={<ApplicationList />} />
         <Route path="/accountInformation" element={<AccountInformation />} />
         <Route path="/applicationPort" element={<ApplicationPort />} />
+        <Route path="/project-description" element={<ProjectDescription projectId ={projectId}/>} />
         
 
       </Routes>
