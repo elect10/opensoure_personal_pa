@@ -11,6 +11,7 @@ import {
 
 import Loginpic from "./routes/Loginpic";
 import Login from "./routes/Login";
+import Main from "./routes/Main";
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Loginpic />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/main" element={<Main />} />
+        
       </Routes>
     </Router>
   );

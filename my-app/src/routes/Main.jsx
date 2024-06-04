@@ -3,14 +3,14 @@ import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import TabBar from './TabBar';
-import PostCard from './Postcardmain';
+import TabBar from './components/TabBar';
+import PostCard from './components/Postcardmain';
 import { CiSearch } from 'react-icons/ci';
 import { IoIosArrowDown } from 'react-icons/io';
 import TechStackPopup from './components/TechStackPopup';
 import TechStackPopup1 from './components/TechStackPopup1';
 import TechStackPopup2 from './components/TechStackPopup2';
-import useProjectStore from '../store/useProjectStore';
+import useProjectStore from './store/useProjectStore';
 
 const Header = styled.div`
   display: flex;
