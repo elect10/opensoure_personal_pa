@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import PostCard from './components/PostCard';
-import TabBar from './TabBar';
+import TabBar from './components/TabBar';
 import styled from 'styled-components';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
