@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import TabBar from "./TabBar";
 import { FaArrowLeft } from "react-icons/fa";
-import ApplicationEvalBar from "./ApplicationEvalBar";
+import ApplicationEvalBar from "./components/ApplicationEvalBar";
 
 export default function ApplicationPort() {
   const navigate = useNavigate();
