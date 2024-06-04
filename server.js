@@ -154,3 +154,95 @@ app.post("/api/post", auth, async (req, res) => {
   
     return res.status(200).json(result.rows[0]);
   });
+
+
+  /* Evaluate Page */
+app.post("/api/end_post", auth, async (req, res) => {
+    const { postid, id } = req.body;
+  
+    const userid_query = {
+        text: "SELECT u.username, u.id FROM users u WHERE (u.id IN (SELECT t.userid FROM teams t WHERE  t.postid = $1)) AND (u.id NOT IN (SELECT e.teamid FROM evaluate e WHERE e.userid = $2)) AND u.id != $2",
+      values: [postid, id],
+    };
+    const result = await db.query(userid_query);
+    return res.status(200).json(result.rows);
+  });
+  
+  /* Post apply */
+  app.post("/api/apply", auth, async (req, res) => {
+    const { id, postid, position } = req.body;
+  
+    const query = {
+      text: "INSERT INTO applicant VALUES ($1, $2, $3)",
+      values: [postid, id, position],
+    };
+    await db.query(query);
+  
+    const query2 = {
+      text: "INSERT INTO apply_post VALUES ($1, $2)",
+      values: [id, postid],
+    };
+    await db.query(query2);
+    /*
+    switch (position) {
+      case 'Front-end':
+        positionStr = 'front_req';
+        break;
+      case 'Back-end':
+        positionStr = 'back_req';
+        break;
+      case 'Designer':
+        positionStr = 'design_req';
+        break;
+      default:
+        return res.status(400).json({ message: 'position error' });
+    }
+  
+    const query3 = {
+      text:
+        'UPDATE posts SET ' +
+        positionStr +
+        ' = ' +
+        positionStr +
+        ' - 1 WHERE id = $1',
+      values: [postid],
+    };
+    await db.query(query3);
+  */
+    return res.status(200).json({ message: "apply success." });
+  });
+  
+  /* Evaluate submit */
+  app.post("/api/evaluate", auth, async (req, res) => {
+    const { userid, perform, commute, prepare, commitment } = req.body;
+  
+    try {
+      const query = {
+        text: "SELECT * FROM users WHERE id = $1",
+        values: [userid],
+      };
+      result = await db.query(query);
+  
+      result.rows[0].total += 1;
+      result.rows[0].perform += perform;
+      result.rows[0].commute += commute;
+      result.rows[0].prepare += prepare;
+      result.rows[0].commitment += commitment;
+  
+      const query2 = {
+        text: "UPDATE users SET total = $1, perform = $2, commute = $3, prepare = $4, commitment = $5 WHERE id = $6",
+        values: [total, perform, commute, prepare, commitment, userid],
+      };
+      await db.query(query2);
+  
+      const query3 = {
+          text: "INSERT INTO evaluate (userid, teamid) VALUES ($1, $2)",
+          values: [id, userid]
+      };
+      await db.query(query3);
+  
+      return res.status(200).json({ message: "evaluation success." });
+    } catch {
+      return res.status(400).json({ message: "evaluation failed." });
+    }
+  });
