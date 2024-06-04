@@ -15,18 +15,21 @@ import Main from "./routes/Main";
 import Makepost from "./routes/Makepost";
 import SignUp from "./routes/SignUp";
 
-// profile page
+//profile to portfolio
 import ProfilePage from "./routes/ProfilePage";
 import PostsList from "./routes/PostsList";
 import Portfolio from "./routes/Portfolio";
+
+//application handle
 import ApplicationList from "./routes/ApplicatonList";
 import AccountInformation from "./routes/AccountInformation";
 import ApplicationPort from "./routes/ApplicationPort";
+
+
+//evaluation
 import ProjectDescription from "./routes/ProjectDescription";
 import TeamEvaluation from "./routes/TeamEvaluation";
 import TeamMemberEvaluation from "./routes/TeamMemberEvaluation";
-
-//scrab page
 import Scrab from "./routes/Scrab";
 
 

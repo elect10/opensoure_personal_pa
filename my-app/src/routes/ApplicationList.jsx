@@ -4,7 +4,7 @@ import TabBar from './components/TabBar';
 import styled from 'styled-components';
 import { FaArrowLeft } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import ApplicationCard from './ApplicationCard';
+import ApplicationCard from './components/ApplicationCard';
 import useProjectStore from '../store/useProjectStore';
 import axios from 'axios';
 
