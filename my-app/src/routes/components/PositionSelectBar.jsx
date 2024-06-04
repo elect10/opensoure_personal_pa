@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import PositionRadioButtons from './PositionRadioButtons';
-import useProjectStore from '../store/useProjectStore';
-import arrowUpIcon from './asset/image/arrow-up-icon.svg';
-import arrowDownIcon from './asset/image/arrow-down-icon.svg';
-import emptyHeartIcon from './asset/image/empty-hearts-icon.svg';
-import redHeartIcon from './asset/image/red-hearts-icon.png';
+import useProjectStore from '.../store/useProjectStore';
+import arrowUpIcon from '../asset/image/arrow-up-icon.svg';
+import arrowDownIcon from '../asset/image/arrow-down-icon.svg';
+import emptyHeartIcon from '../asset/image/empty-hearts-icon.svg';
+import redHeartIcon from '../asset/image/red-hearts-icon.png';
 
 const Container = styled.footer`
   position: fixed;

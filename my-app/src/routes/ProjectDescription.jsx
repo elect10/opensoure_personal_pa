@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // import DATA from '../data.js';
-import ProjectSummary from './ProjectSummary.jsx';
-import ProjectDetails from './ProjectDetails.jsx';
+import ProjectSummary from './components/ProjectSummary.jsx';
+import ProjectDetails from './components/ProjectDetails.jsx';
 import useProjectStore from '../store/useProjectStore.jsx';
 import PositionSelectBar from './components/PositionSelectBar.jsx';
 import arrowLeftIcon from './asset/image/arrow-left-icon.svg';
