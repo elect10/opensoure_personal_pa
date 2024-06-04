@@ -382,3 +382,32 @@ app.post("/api/posting", auth, async (req, res) => {
       res.status(400).json({ message: "account failed" });
     }
   });
+
+  app.post("/api/save", auth, async (req, res) => {
+    // const { username, password, phone, department } = req.body;
+    const id = req.body.id;
+    const filteredData = Object.fromEntries(
+      Object.entries(req.body).filter(
+        ([key, value]) => value !== undefined && key != "id"
+      )
+    );
+  
+    const setClause = Object.entries(filteredData)
+      .map(([key, value]) => `${key} = '${value}'`)
+      .join(", ");
+  
+    console.log(setClause);
+  
+    const query = `UPDATE users SET ${setClause} WHERE id = '${id}'`;
+    console.log(query);
+  
+    try {
+      const query_result = await db.query(query);
+      console.log(query_result.rows);
+  
+      res.status(200).json({ message: "save success" });
+    } catch (error) {
+      console.error(error);
+      res.status(400).json({ message: "save failed" });
+    }
+  });
