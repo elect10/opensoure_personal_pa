@@ -130,3 +130,27 @@ app.post("/api/search", auth, async (req, res) => {
   
     return res.status(200).json(result.rows);
   });
+
+  /* Post page */
+app.post("/api/post", auth, async (req, res) => {
+    const { postid, id } = req.body;
+  
+    await db.query("UPDATE posts SET isEnd = true WHERE enddate < NOW()::Date");
+  
+    const query = {
+      text: "SELECT * FROM posts WHERE id = $1",
+      values: [postid],
+    };
+    const result = await db.query(query);
+  
+    const query2 = {
+      text: "SELECT 1 FROM teams WHERE postid = $1 AND userid = $2",
+      values: [postid, id],
+    };
+    isAttend = await db.query(query2);
+  
+    result.rows[0].isAttend =
+      isAttend.rows.length > 0 || result.rows[0].userid == id;
+  
+    return res.status(200).json(result.rows[0]);
+  });
