@@ -30,3 +30,34 @@ app.use(
     if (err) throw err;
     console.log("DB is Connected");
   });
+
+  /* SignUp 회원가입 */
+app.post("/api/signup", async (req, res, next) => {
+    // id 중복 확인
+    const { username, id, password, phone, department } = req.body;
+  
+    const query = {
+      text: "SELECT * FROM users WHERE id = $1",
+      values: [id],
+    };
+    const result = await db.query(query);
+  
+    if (result.rows.length > 0) {
+      return res.status(400).json({ message: "studentid already exists" });
+    } else {
+      return next();
+    }
+  });
+  
+  app.post("/api/signup", async (req, res) => {
+    // id 생성
+    const { username, id, password, department, phone } = req.body;
+  
+    const query = {
+      text: "INSERT INTO users (username, id, password, phone, department) VALUES ($1, $2, $3, $4, $5)",
+      values: [username, id, password, phone, department],
+    };
+    const result = await db.query(query);
+  
+    return res.status(200).json({ message: "Success create new account" });
+  });
