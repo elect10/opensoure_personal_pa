@@ -91,11 +91,82 @@ Docker-compose up --build
 # 실행 예시
 ![KakaoTalk_Video_2024-06-05-16-32-11](https://github.com/elect10/opensoure_personal_pa/assets/133738655/e30b3a36-074f-4e56-8477-ad0c14eed6bb)
 
-# 코드 설명 (디자인적 코드는 배제하고, 기능적인 부분만을 설명합니다.)
-## login.js
-+ 
+
+# api 명세서 
+[api 명세서를 확인하려면 클릭](/Users/minji/Downloads/API.pdf)
 
 
+# 코드 설명 (코드의 양이 너무 방대해 디자인적 코드는 배제하고, 핵심 기능만을 설명합니다.)
+
+## react 코드에서의 데이터 전송은 모두 axios.post 로 json 형식으로 전송 되었으며 토큰 관련 보안 문제로 { withCredentials: true } 를 추가했습니다.
+
+## 작성된 코드의 형식은 아래와 같습니다.
+## 주요코드.jsx (부가코드.jsx , 부가코드2.jsx )...,,, {주요코드의 기능을 구현해주는 component 코드}
+
+
+## SignUp.jsx
++ 이름, 학번(id), 비밀번호, 전화번호, 학과 를 form 에 받아 (state, setstate 이용) 서버로 전송합니다.
+
+## Login.jsx (Loginpic.jsx)
++ 학번(id), 비밀번호 를 input 에 받아 서버로 전달한후, 로그인이 성공하면 main page 로 이동합니다. 
+
+## Main.jsx (Postcardmain.jsx, ProjectDescription.jsx)
++ 메인 페이지로, 프로젝트 검색 기능을 제공합니다. 
++ status 팝업(Techstackpoopup1.jsx) 은 모집중인지 여부를 판단합니다.
++ position 팝업(Techstackpoopup2.jsx)은 position 을 받아 string 형으로 서버에 넘깁니다. 
++ techstack popup 은 tech stack 을 비트마스크 형식으로 받아 서버에 넘깁니다.(ex react = 0 << 1 , express = 0 << 2 ..,,) 이 정보를 토대로 조건에 맞는 posts 들을 받아와 main 화면에 보여줍니다.
++ 검색 input 은 클라이언트 부분에는 구현이 돼있지만 , 서버 쪽에서 구현하지 않아 실제로 필터링하는 역활을 하지 못합니다.
+
+
+## Makepost.jsx 
++ 글을 작성하여 서버로 전송합니다.
+popup 은 main.jsx 에서 사용한것과 동일한 컴포넌트로 구현했습니다.
+
+## Scrab.jsx (Postcardmain.jsx, ApplicationList.jsx)
++ 서버에서 id 토큰 (쿠키)을 이용해 내 id 를 확인한뒤 지원한 게시물을 전송해주면 내가 지원한 게시물을 나열해서 보여줍니다.
+
+## ProfilePage.jsx (ProfileCard.jsx, Portfolio.jsx, Postlists.jsx, AccountInformation.jsx ..,,)
++ 본인의 프로필을 관리할수 있는 페이지. 
+edit portfolio 를 이용해 포트폴리오를 수정할수 있으며 , 본인의 포트폴리오를 확인하는것 또한 가능하다.
++ My Post 버튼을 통해 본인이 쓴 게시물을 확인할수 있게 했다.
++ My Post 를 통해 게시물을 확인하고 클릭하면, 지원자 리스트가 나온다 (ApplicationList.jsx) 지원자를 클릭하면 , 지원자의 포트폴리오가 나오게 된다. (Application.jsx) 
++ 지원자 리스트 페이지에서 지원자 승인이 가능하다.
+
+## TeamEvaluation.jsx (TeamMemberEvaluation.jsx , TeamMemberList.jsx )
++ 팀을 평가하는 페이지.
++ 게시물을 검색했을때 , 게시물이 recurting 상태가 아니고 closed 라면 , TeamEvaluation page 로 라우팅한다.
++ teammemberlist.jsx 를 통해 팀원들을 불러온후 , 팀원을 클릭시 , teammemberevaluation 함수로 이동해 팀원을 평가한다.
++ 평가는 마찬가지로 state 에 점수 , 평가자 등을 저장한후, onClick () => setstate 로 저장한 값을 서버로 전달한다.
+
+## useProjectStore.jsx , useTeamStore.jsx
++ 자식 계층에서 부모 계층으로 데이터를 넘길때 react 내에서 zustand 를 이용해 상태관리를 진행했다. 
++ 두 파일은 zustand 를 이용해 프로젝트, 팀 에 대한 정보를 전역적으로 관리해주는 파일이다. 
++ react 코드 어디에서든 사용이 가능하다
+
+## TabBar.jsx 
++ 거의 모든 화면에 존재하는 네비게이션 바를 구현한 컴포넌트이다.
++ 간단히 navigate 를 이용해 다른 페이지로 이동할수 있게 했다.
++ z-index 를 1000으로 할당해 팝업을 제외한 모든 요소보다 앞에 존재하게 구현했다. (popup 은 1001 )
+
+## server.js 
++ 로그인을 수행할시 쿠키형식의 토큰이 발행되도록 구현했으며, 차후 유저의 id 가 필요한 경우 이 값을 확인하여 사용할수 있게 하였다. 
++ 기본적으로 json 데이터를 수신하여 , 수신된 값에 맞는 일(데이터 베이스 수정 및 데이터 발송..,,etc ) 을 수행하며, 모든 요청은 보안상의 이유로 post 로 받도록 설정했다. 
++ try catch 를 이용해 에러 핸들링을 최대한 구현해놨다.
++ 리액트 파일과의 연동은 깃허브에 미리 업로드된 build 폴더와 진행했다. 변경을 원할시 25, 613 번째 줄의 경로를 수정해야한다.
++ 자세한 구현은 api 명세서를 참고
+
+## TABLE.sql
++ 데이터 베이스에 필요한 테이블을 구현해둔 파일이다.
++ users 에서는 유저들의 정보를 저장한다.
++ posts 에서는 게시물 마다의 정보를 저장하고 이때id 는 만든 순서대로 커지도록 구현했다.
++ alarms 은 알람기능이 구현전인 관계로 사용되지 않는다.
++ apply_post 는 게시글과 신청자를 묶어주는 테이블이다.
++ teams 는 게시물을 작성한인원, 신청한 인원으로 구성된다.
++ applicant 는 지원자의 apply_post 에  position 을 추가한 테이블이다.
++ evaluate 는 평가를 위한 테이블 이다.
+
+## .env
++ 데이터 베이스를 위한 환경변수를 설정한 파일이다.
 
 
 
