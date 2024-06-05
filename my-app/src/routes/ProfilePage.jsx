@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import PostsList from "./PostsList";
+import PostsList from "./PostsList.jsx";
 import ProfileCard from "./components/ProfileCard.jsx";
 import EvaluationBar from "./components/EvaluationBar.jsx";
 import styled from "styled-components";
@@ -63,8 +63,9 @@ function ProfilePage() {
           </PostDescription>
         </div>
       </Info_section>
-      <TabBar />
+      <TabBar/>
     </Profile_page>
+    
   );
 }
 
@@ -73,10 +74,11 @@ export default ProfilePage;
 const Profile_page = styled.div`
   position: relative;
   width: 393px;
-  height: 852px;
+  height: 784px;
   background: #ffffff;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Header = styled.div`
