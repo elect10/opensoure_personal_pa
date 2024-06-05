@@ -95,8 +95,8 @@ Docker-compose up --build
 
 
 # api 명세서 
-[api 명세서를 확인하려면 클릭]((https://github.com/user-attachments/files/15587531/API.pdf)
-)
+[api 명세서를 확인하려면 클릭](https://github.com/user-attachments/files/15587531/API.pdf)
+
 
 
 # 코드 설명 
@@ -105,7 +105,6 @@ Docker-compose up --build
 ### 작성된 코드의 형식은 아래와 같습니다.
 + 주요코드.jsx (부가코드.jsx , 부가코드2.jsx )...,,, {주요코드의 기능을 구현해주는 component 코드}
 
----
 ### react 코드에서의 데이터 전송은 모두 axios.post 로 json 형식으로 전송 되었으며 토큰 관련 보안 문제로 { withCredentials: true } 를 추가했습니다.
 
 ## App.js 
