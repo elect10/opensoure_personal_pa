@@ -95,7 +95,8 @@ Docker-compose up --build
 
 
 # api 명세서 
-[api 명세서를 확인하려면 클릭](/Users/minji/Downloads/API.pdf)
+[api 명세서를 확인하려면 클릭]((https://github.com/user-attachments/files/15587531/API.pdf)
+)
 
 
 # 코드 설명 
